@@ -87,6 +87,31 @@
             background-color: #7d5527;
         }
 
+        .nav-buttons .home-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 18px;
+            background-color: #9f6d31;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0.8;
+            padding: 10px 20px;
+        }
+
+        .nav-buttons .home-icon img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .nav-buttons .home-icon:hover {
+            background-color: #7d5527;
+            opacity: 1;
+        }
+
         .center-button {
             position: absolute;
             bottom: 10%;
@@ -119,6 +144,11 @@
             border-radius: 5px;
             cursor: pointer;
             opacity: 0.5;
+            display: none; /* Masquer par défaut */
+        }
+
+        .info-button.visible {
+            display: block; /* Afficher uniquement si la classe "visible" est ajoutée */
         }
 
         .info-button:hover {
@@ -178,18 +208,18 @@
     <div class="page" id="page3">
         <div class="nav-buttons">
             <button onclick="goToPage(2)">←</button>
-            <button onclick="goToPage(1)">→</button>
+            <button onclick="goToPage(1)" class="home-icon">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/home.png" alt="Home">
+            </button>
         </div>
         <div class="center-button">
             <a id="center-btn" href="https://maps.app.goo.gl/WFoFpeDSQxV2heLF7" target="_blank">Clique aqui</a>
         </div>
     </div>
 
-    <button class="info-button" onclick="toggleDesignerMenu()">Design by:</button>
+    <button class="info-button" id="info-button" onclick="toggleDesignerMenu()">Design by:</button>
 
-    <div class="designer-info" id="designerMenu">
-        <!-- Informations dynamiques ici -->
-    </div>
+    <div class="designer-info" id="designerMenu"></div>
 
     <script>
         const translations = {
@@ -254,13 +284,21 @@
         window.onload = function() {
             document.getElementById('language').value = 'pt';
             changeLanguage();
+            goToPage(1);
         };
 
         function goToPage(pageNumber) {
             const pages = document.querySelectorAll('.page');
+            const infoButton = document.getElementById('info-button');
+
             pages.forEach((page, index) => {
                 if (index + 1 === pageNumber) {
                     page.classList.add('active');
+                    if (pageNumber === 1) {
+                        infoButton.classList.add('visible');
+                    } else {
+                        infoButton.classList.remove('visible');
+                    }
                 } else {
                     page.classList.remove('active');
                 }
