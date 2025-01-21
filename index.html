@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitation Mariage</title>
-    <meta property="og:title" content="Mariage Felipe & Patricia">
-    <meta property="og:description" content="Rejoignez-nous pour célébrer l'union de Patricia et Felipe. Découvrez tous les détails de notre mariage ici !">
-    <meta property="og:image" content="https:/https://wedding-patricia-felipe.netlify.app/Plan_de_travail_1_fr.png>
+    <title>Convite de Casamento</title>
+    <meta property="og:title" content="Casamento Felipe & Patricia">
+    <meta property="og:description" content="Junte-se a nós para celebrar a união de Patricia e Felipe. Veja todos os detalhes do nosso casamento aqui!">
+    <meta property="og:image" content="https://wedding-patricia-felipe.netlify.app/Plan_de_travail_1_pt.png">
     <meta property="og:url" content="https://wedding-patricia-felipe.netlify.app" />
-    <meta property="og:type" content="wedding-patricia-felipe.netlify.app"> <!-- ou "article" pour les articles de blog -->
-
+    <meta property="og:type" content="website">
     <style>
         body, html {
             margin: 0;
@@ -18,7 +17,6 @@
             height: 100%;
             overflow: auto;
         }
-
         .page {
             width: 100%;
             height: 100%;
@@ -35,16 +33,13 @@
             background-repeat: no-repeat;
             transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
         }
-
         .page.active {
             opacity: 1;
             visibility: visible;
         }
-
-        #page1 { background-image: url('images/fr/Plan_de_travail_1_fr.png'); }
-        #page2 { background-image: url('images/fr/Plan_de_travail_2_fr.png'); }
-        #page3 { background-image: url('images/fr/Plan_de_travail_3_fr.png'); }
-
+        #page1 { background-image: url('images/pt/Plan_de_travail_1_pt.png'); }
+        #page2 { background-image: url('images/pt/Plan_de_travail_2_pt.png'); }
+        #page3 { background-image: url('images/pt/Plan_de_travail_3_pt.png'); }
         .main-buttons {
             position: absolute;
             top: 60%;
@@ -54,8 +49,7 @@
             width: 100%;
             align-items: center;
         }
-
-        .main-buttons button {
+        .main-buttons button, .center-button a {
             padding: 10px 20px;
             font-size: 18px;
             background-color: #9f6d31;
@@ -64,18 +58,15 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
-        .main-buttons button:hover {
+        .main-buttons button:hover, .center-button a:hover {
             background-color: #7d5527;
         }
-
         .language-selector {
             position: absolute;
             top: 10px;
             left: 10px;
             z-index: 20;
         }
-
         .language-selector select {
             padding: 5px 10px;
             font-size: 16px;
@@ -83,181 +74,153 @@
             border-radius: 5px;
             background-color: #fff;
         }
-
-        .arrows {
-            position: absolute;
+        .info-box {
+            position: fixed;
+            bottom: 0;
+            left: 0;
             width: 100%;
-            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            text-align: center;
+            display: none;
         }
-
-        .arrows button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 10px 15px;
-            font-size: 18px;
-            background-color: rgba(255, 255, 255, 0.5);
+        .info-box.visible {
+            display: block;
+        }
+        .info-button {
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #9f6d31;
+            color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-
-        .arrows button:hover {
-            background-color: rgba(255, 255, 255, 0.7);
-        }
-
-        .arrows .left {
-            left: 10px;
-        }
-
-        .arrows .right {
-            right: 10px;
-        }
-
-        .center-button {
-            position: absolute;
-            top: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            z-index: 10;
-        }
-
-        .center-button a {
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #ab9e90;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .center-button a:hover {
+        .info-button:hover {
             background-color: #7d5527;
         }
+        .designer-menu {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+        }
+        .designer-menu.active {
+            display: block;
+        }
+        .designer-menu a {
+            color: #9f6d31;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .designer-menu a:hover {
+            color: #7d5527;
+        }
 
-        @media (max-width: 768px) {
-            .main-buttons button {
-                font-size: 16px;
-            }
+        /* Discretisation du bouton */
+        .info-button {
+            background-color: transparent;
+            color: #9f6d31;
+            font-size: 14px;
+            border: 1px solid #9f6d31;
+            padding: 5px 10px;
+            text-transform:capitalize;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            box-shadow: none;
+            cursor: pointer;
+            opacity: 0.5;
+        }
+        .info-button:hover {
+            background-color: #9f6d31;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <!-- Sélecteur de langue -->
     <div class="language-selector">
         <select id="language" onchange="changeLanguage()">
             <option value="fr">Français</option>
-            <option value="pt">Português</option>
+            <option value="pt" selected>Português</option>
             <option value="en">English</option>
         </select>
     </div>
 
-    <!-- Page 1 -->
     <div class="page active" id="page1">
         <div class="main-buttons">
-            <button id="open-btn" onclick="goToPage(2)"></button>
-            <button id="confirm-btn" onclick="goToPage(3)"></button>
+            <button id="open-btn" onclick="goToPage(2)">Ouvrir</button>
+            <button id="confirm-btn" onclick="goToPage(3)">Confirmação et Adresse</button>
         </div>
     </div>
-
-    <!-- Page 2 -->
     <div class="page" id="page2">
-        <div class="arrows">
-            <button class="left" onclick="goToPage(1)"></button>
-            <button class="right" onclick="goToPage(3)"></button>
+        <div class="main-buttons">
+            <button onclick="goToPage(1)">←</button>
+            <button onclick="goToPage(3)">→</button>
         </div>
     </div>
-
-    <!-- Page 3 -->
     <div class="page" id="page3">
-        <div class="arrows">
-            <button class="left" onclick="goToPage(2)"></button>
-            <button class="right" onclick="goToPage(1)"></button>
+        <div class="main-buttons">
+            <button onclick="goToPage(2)">←</button>
+            <button onclick="goToPage(1)">→</button>
         </div>
-        <!-- Nouveau bouton cliquable -->
         <div class="center-button">
-            <a id="center-btn" href="https://maps.app.goo.gl/WFoFpeDSQxV2heLF7" target="_blank"></a>
+            <a id="center-btn" href="https://maps.app.goo.gl/WFoFpeDSQxV2heLF7" target="_blank">Clique aqui</a>
         </div>
     </div>
 
+    <!-- Designer information dropdown -->
+    <div class="designer-menu" id="designerMenu">
+        <p>Concepteur: art-by-mpro</p>
+        <p>Email: <a href="mailto:miguel@example.com">art.by.mpro@gmail.com</a></p>
+        <p>Téléphone: <a href="tel:+123456789">+33751492545</a></p>
+    </div>
+
+    <button class="info-button" onclick="toggleDesignerMenu()">Concepteur</button>
+    
     <script>
-        // Traductions des textes dans les trois langues
+        function toggleDesignerMenu() {
+            const menu = document.getElementById('designerMenu');
+            menu.classList.toggle('active');
+        }
+
         const translations = {
-            fr: {
-                open: "Ouvrir",
-                confirm: "Confirmation et Adresse",
-                prev: "←",
-                next: "→",
-                back: "↩",
-                page1: "Page 1",
-                page2: "Page 2",
-                page3: "Page 3",
-                clickHere: "Clique ici"
-            },
-            pt: {
-                open: "Abrir",
-                confirm: "Confirmação e Endereço",
-                prev: "←",
-                next: "→",
-                back: "↩",
-                page1: "Página 1",
-                page2: "Página 2",
-                page3: "Página 3",
-                clickHere: "Clique aqui"
-            },
-            en: {
-                open: "Open",
-                confirm: "Confirmation and Address",
-                prev: "←",
-                next: "→",
-                back: "↩",
-                page1: "Page 1",
-                page2: "Page 2",
-                page3: "Page 3",
-                clickHere: "Click here"
-            }
+            fr: { open: "Ouvrir", confirm: "Confirmation et Adresse", clickHere: "Clique ici", info: "Informations : Le mariage aura lieu à 16h. Code vestimentaire : élégant.", prev: "←", next: "→" },
+            pt: { open: "Abrir", confirm: "Confirmação e Endereço", clickHere: "Clique aqui", info: "Informações: O casamento será às 16h. Traje: social elegante.", prev: "←", next: "→" },
+            en: { open: "Open", confirm: "Confirmation and Address", clickHere: "Click here", info: "Information: The wedding will take place at 4 PM. Dress code: formal.", prev: "←", next: "→" }
         };
 
-        // Fonction pour changer la langue
         function changeLanguage() {
             const lang = document.getElementById('language').value;
-            const openBtn = document.getElementById('open-btn');
-            const confirmBtn = document.getElementById('confirm-btn');
-            const centerBtn = document.getElementById('center-btn');
-
-            // Mettre à jour le texte des boutons
-            openBtn.textContent = translations[lang].open;
-            confirmBtn.textContent = translations[lang].confirm;
-            centerBtn.textContent = translations[lang].clickHere;
-
-            // Changer les boutons de navigation des pages
-            const leftButtons = document.querySelectorAll('.arrows .left');
-            const rightButtons = document.querySelectorAll('.arrows .right');
-            leftButtons.forEach(button => button.textContent = translations[lang].prev);
-            rightButtons.forEach(button => button.textContent = translations[lang].next);
-
-            // Mettre à jour les titres de pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                if (page.id === 'page1') {
-                    page.setAttribute('aria-label', translations[lang].page1);
-                } else if (page.id === 'page2') {
-                    page.setAttribute('aria-label', translations[lang].page2);
-                } else if (page.id === 'page3') {
-                    page.setAttribute('aria-label', translations[lang].page3);
-                }
-            });
-
-            // Changer les images de fond selon la langue choisie
+            document.getElementById('open-btn').textContent = translations[lang].open;
+            document.getElementById('confirm-btn').textContent = translations[lang].confirm;
+            document.getElementById('center-btn').textContent = translations[lang].clickHere;
+            document.getElementById('infoBox').textContent = translations[lang].info;
             document.getElementById('page1').style.backgroundImage = `url('images/${lang}/Plan_de_travail_1_${lang}.png')`;
             document.getElementById('page2').style.backgroundImage = `url('images/${lang}/Plan_de_travail_2_${lang}.png')`;
             document.getElementById('page3').style.backgroundImage = `url('images/${lang}/Plan_de_travail_3_${lang}.png')`;
         }
 
-        // Fonction pour naviguer entre les pages avec animation
+        function toggleInfoBox() {
+            const infoBox = document.getElementById('infoBox');
+            infoBox.classList.toggle('visible');
+        }
+
+        window.onload = function() {
+            document.getElementById('language').value = 'pt';
+            changeLanguage();
+        };
+
         function goToPage(pageNumber) {
             const pages = document.querySelectorAll('.page');
             pages.forEach((page, index) => {
@@ -268,11 +231,6 @@
                 }
             });
         }
-
-        // Initialiser la langue par défaut
-        window.onload = function() {
-            changeLanguage(); // Appliquer la langue par défaut (français)
-        };
     </script>
 </body>
 </html>
