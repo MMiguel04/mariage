@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convite de Casamento</title>
-    <meta property="og:title" content="Casamento Filipe & Patricia">
-    <meta property="og:description" content="Junte-se a nós para celebrar a união de Filipe e Patricia. Veja todos os detalhes do nosso casamento aqui!">
+    <title>Wedding Invitation</title>
+    <meta property="og:title" content="Wedding Filipe & Patricia">
+    <meta property="og:description" content="Join us to celebrate the union of Filipe and Patricia. See all the details of our wedding here!">
     <meta property="og:image" content="https://wedding-filipe-patricia.netlify.app/images/envelope2.jpg?v=1">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -39,9 +39,9 @@
             opacity: 1;
             visibility: visible;
         }
-        #page1 { background-image: url('images/pt/Plan_de_travail_1_pt.png'); }
-        #page2 { background-image: url('images/pt/Plan_de_travail_2_pt.png'); }
-        #page3 { background-image: url('images/pt/Plan_de_travail_3_pt.png'); }
+        #page1 { background-image: url('images/en/Plan_de_travail_1_en.png'); }
+        #page2 { background-image: url('images/en/Plan_de_travail_2_en.png'); }
+        #page3 { background-image: url('images/en/Plan_de_travail_3_en.png'); }
 
         .main-buttons {
             position: absolute;
@@ -194,15 +194,15 @@
     <div class="language-selector">
         <select id="language" onchange="changeLanguage()">
             <option value="fr">Français</option>
-            <option value="pt" selected>Português</option>
-            <option value="en">English</option>
+            <option value="pt">Português</option>
+            <option value="en" selected>English</option>
         </select>
     </div>
 
     <div class="page active" id="page1">
         <div class="main-buttons">
-            <button id="open-btn" onclick="goToPage(2)">Ouvrir</button>
-            <button id="confirm-btn" onclick="goToPage(3)">Confirmação et Adresse</button>
+            <button id="open-btn" onclick="goToPage(2)">Open</button>
+            <button id="confirm-btn" onclick="goToPage(3)">Confirmation and Address</button>
         </div>
     </div>
 
@@ -221,7 +221,7 @@
             </button>
         </div>
         <div class="center-button">
-            <a id="center-btn" href="https://maps.app.goo.gl/WFoFpeDSQxV2heLF7" target="_blank">Clique aqui</a>
+            <a id="center-btn" href="https://maps.app.goo.gl/WFoFpeDSQxV2heLF7" target="_blank">Click here</a>
         </div>
     </div>
 
@@ -290,7 +290,7 @@
         }
 
         window.onload = function() {
-            document.getElementById('language').value = 'pt';
+            document.getElementById('language').value = 'en';
             changeLanguage();
             goToPage(1);
         };
